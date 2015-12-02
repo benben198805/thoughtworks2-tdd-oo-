@@ -49,7 +49,7 @@ public class GameTest {
     }
 
     @Test
-    public void should_return_first_player_lose_when_first_player_is_normal_and_second_player_is_warrior() {
+    public void should_return_first_player_lose_when_first_player_is_normal_and_second_player_is_warrior() throws Exception {
         Player firstPlayer = new Player("张三", 10, 8);
         Warrior secondPlayer = new Warrior("李四", 20, 9,"战士",0,new Weapon("木棒",1));
 
@@ -63,7 +63,7 @@ public class GameTest {
     }
 
     @Test
-    public void should_return_first_player_lose_when_first_player_is_warrior_and_second_player_is_warrior() {
+    public void should_return_first_player_lose_when_first_player_is_warrior_and_second_player_is_warrior() throws Exception {
         Warrior firstPlayer = new Warrior("张三", 20, 5,"战士",1,new Weapon("木棒",1));
         Warrior secondPlayer = new Warrior("李四", 20, 5,"战士",1,new Weapon("钉耙",10));
 
