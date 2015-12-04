@@ -92,32 +92,10 @@ public class Warrior extends Player{
     }
 
     public String beAttacked(int damage) {
-
+        String effectResult=this.getEffect().getEffectResult(this.getName());
 
         int hurt=damage-armorDefense>0?damage-armorDefense:0;
-
-        String effectResult="";
-
-        switch (this.getEffect().getEffectName()){
-            case "毒性伤害":
-                effectResult=format("%s中毒了,", this.getName());
-                break;
-            case "火焰伤害":
-                effectResult=format("%s被火焰吞噬了,", this.getName());
-                break;
-            case "冰冻伤害":
-                effectResult=format("%s被冰冻了,", this.getName());
-                break;
-            case "击晕伤害":
-                effectResult=format("%s晕倒了,", this.getName());
-                break;
-            case "全力一击":
-                hurt=hurt*3;
-                break;
-            default:
-                break;
-        }
-
+        hurt+=this.getEffect().getDoubleEffectDamage(hurt);
         this.setBlood(this.getBlood() - hurt);
 
         return format("%s受到了%d点伤害，%s%s剩余生命：%d",

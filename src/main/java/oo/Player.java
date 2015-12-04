@@ -51,28 +51,9 @@ public class Player {
     }
 
     public String beAttacked(int damage) {
-        String effectResult="";
+        String effectResult=effect.getEffectResult(name);
 
-        switch (effect.getEffectName()){
-            case "毒性伤害":
-                effectResult=format("%s中毒了,", name);
-                break;
-            case "火焰伤害":
-                effectResult=format("%s被火焰吞噬了,", name);
-                break;
-            case "冰冻伤害":
-                effectResult=format("%s被冰冻了,", name);
-                break;
-            case "击晕伤害":
-                effectResult=format("%s晕倒了,", name);
-                break;
-            case "全力一击":
-                damage=damage*3;
-                break;
-            default:
-                break;
-        }
-
+        damage+=effect.getDoubleEffectDamage(damage);
         blood -= damage;
 
         return format("%s受到了%d点伤害，%s%s剩余生命：%d",
