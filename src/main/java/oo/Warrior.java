@@ -52,8 +52,8 @@ public class Warrior extends Player{
 
 
     public String attack(Player victim){
-        boolean isStun=this.getWeaponEffect().getEffectName()=="击晕伤害";
-        boolean isFreeze=this.getWeaponEffect().getEffectName()=="冰冻伤害"&&this.getWeaponEffect().getEffectRound()==3;
+        boolean isStun=this.getEffect().getEffectName()=="击晕伤害";
+        boolean isFreeze=this.getEffect().getEffectName()=="冰冻伤害"&&this.getEffect().getEffectRound()==3;
 
         String result=checkEffectState();
 
@@ -98,7 +98,7 @@ public class Warrior extends Player{
 
         String effectResult="";
 
-        switch (this.getWeaponEffect().getEffectName()){
+        switch (this.getEffect().getEffectName()){
             case "毒性伤害":
                 effectResult=format("%s中毒了,", this.getName());
                 break;

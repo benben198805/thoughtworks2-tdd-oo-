@@ -6,13 +6,13 @@ public class Player {
     private String name;
     private int blood;
     private int damage;
-    private WeaponEffect effect;
+    private Effect effect;
 
     public Player(String name, int blood, int damage) {
         this.name = name;
         this.blood = blood;
         this.damage = damage;
-        this.effect=new WeaponEffect("",0,0);
+        this.effect=new Effect("",0,0);
     }
 
     public String getName() {
@@ -83,7 +83,7 @@ public class Player {
         return blood >= 0;
     }
 
-    public WeaponEffect getWeaponEffect(){
+    public Effect getEffect(){
         return effect;
     }
 
@@ -91,7 +91,7 @@ public class Player {
     {
         if(this.effect.getEffectName()=="")
         {
-            this.effect=new WeaponEffect(weaponEffect.getEffectName(),weaponEffect.getEffectRound(),0.0f);
+            this.effect=new Effect(weaponEffect.getEffectName(),weaponEffect.getEffectRound(),2);
         }
         else if(this.effect.getEffectName()==weaponEffect.getEffectName())
         {
@@ -104,13 +104,16 @@ public class Player {
         String effectResult="";
         switch (effect.getEffectName()){
             case "毒性伤害":
-                blood-=2;
-                effectResult=format("%s受到%d点毒性伤害, %s剩余生命：%d\n",name,2,name,blood);
-                effect.addEffectRound(-1);
-                break;
             case "火焰伤害":
-                blood-=2;
-                effectResult=format("%s受到%d点火焰伤害, %s剩余生命：%d\n",name,2,name,blood);
+                if(blood-2<=0)
+                {
+                    blood=0;
+                }
+                else
+                {
+                    blood-=2;
+                }
+                effectResult=format("%s受到%d点%s, %s剩余生命：%d\n",name,2,effect.getEffectName(),name,blood);
                 effect.addEffectRound(-1);
                 break;
             case "冰冻伤害":
@@ -129,7 +132,7 @@ public class Player {
         }
 
         if(effect.getEffectRound()==0){
-            effect=new WeaponEffect("",0,0.0f);
+            effect=new Effect("",0,0);
         }
         return effectResult;
     }

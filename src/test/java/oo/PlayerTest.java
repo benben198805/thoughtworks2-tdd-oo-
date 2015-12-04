@@ -137,7 +137,7 @@ public class PlayerTest {
         WeaponEffect weaponEffect=new WeaponEffect("毒性伤害",1,0.6f);
 
         player.beEffected(weaponEffect);
-        WeaponEffect playWeaponEffect=player.getWeaponEffect();
+        Effect playWeaponEffect=player.getEffect();
         boolean isEqual=playWeaponEffect.getEffectName()=="毒性伤害"&&playWeaponEffect.getEffectRound()==1;
 
         assertTrue(isEqual);
@@ -151,7 +151,7 @@ public class PlayerTest {
 
         player.beEffected(weaponEffectFrist);
         player.beEffected(weaponEffectSecond);
-        WeaponEffect playWeaponEffect=player.getWeaponEffect();
+        Effect playWeaponEffect=player.getEffect();
         boolean isEqual=playWeaponEffect.getEffectName()=="毒性伤害"&&playWeaponEffect.getEffectRound()==3;
 
         assertTrue(isEqual);
@@ -165,7 +165,7 @@ public class PlayerTest {
 
         player.beEffected(weaponEffectFrist);
         player.beEffected(weaponEffectSecond);
-        WeaponEffect playWeaponEffect=player.getWeaponEffect();
+        Effect playWeaponEffect=player.getEffect();
         boolean isEqual=playWeaponEffect.getEffectName()=="毒性伤害"&&playWeaponEffect.getEffectRound()==1;
 
         assertTrue(isEqual);

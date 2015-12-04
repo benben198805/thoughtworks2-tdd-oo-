@@ -42,21 +42,5 @@ public class WeaponEffectTest {
     }
 
 
-    @Test
-    public void should_return_effect_round_when_add_effect_round()
-    {
-        effect.addEffectRound(2);
-        int effectRound=effect.getEffectRound();
-        assertThat(effectRound, is(3));
-    }
-
-
-    @Test
-    public void should_return_positive_effect_round_when_add_negative_effect_round()
-    {
-        effect.addEffectRound(-9);
-        int effectRound=effect.getEffectRound();
-        assertThat(effectRound, is(0));
-    }
 
 }
