@@ -76,4 +76,25 @@ public class GameTest {
         inOrder.verify(consolePrinter, times(1)).print("战士李四用钉耙攻击了战士张三，张三受到了14点伤害，张三剩余生命：-8\n");
         inOrder.verify(consolePrinter, times(1)).print("张三被打败了");
     }
+
+
+
+    @Test
+    public void should_return_result_when_first_player_is_assassin_with_100_percent_knife_and_second_player_is_warrior() throws Exception {
+        Warrior firstPlayer = new Warrior("张三", 20, 5,"刺客",1,new Weapon("剧毒匕首",1,"短",new WeaponEffect("毒性伤害",2,10.0f)));
+        Warrior secondPlayer = new Warrior("李四", 20, 5,"骑士",1,new Weapon("钉耙",4));
+
+
+        game.fight(firstPlayer, secondPlayer);
+
+        inOrder.verify(consolePrinter, times(1)).print("刺客张三用剧毒匕首攻击了骑士李四，李四受到了5点伤害，李四中毒了,李四剩余生命：15\n");
+        inOrder.verify(consolePrinter, times(1)).print("李四受到2点毒性伤害, 李四剩余生命：13\n骑士李四用钉耙攻击了刺客张三，张三受到了8点伤害，张三剩余生命：12\n");
+        inOrder.verify(consolePrinter, times(1)).print("刺客张三用剧毒匕首攻击了骑士李四，李四受到了5点伤害，李四中毒了,李四剩余生命：8\n");
+        inOrder.verify(consolePrinter, times(1)).print("李四受到2点毒性伤害, 李四剩余生命：6\n骑士李四用钉耙攻击了刺客张三，张三受到了8点伤害，张三剩余生命：4\n");
+        inOrder.verify(consolePrinter, times(1)).print("刺客张三用剧毒匕首攻击了骑士李四，李四受到了5点伤害，李四中毒了,李四剩余生命：1\n");
+        inOrder.verify(consolePrinter, times(1)).print("李四受到2点毒性伤害, 李四剩余生命：-1\n骑士李四用钉耙攻击了刺客张三，张三受到了8点伤害，张三剩余生命：-4\n");
+        inOrder.verify(consolePrinter, times(1)).print("张三被打败了");
+    }
+
+
 }

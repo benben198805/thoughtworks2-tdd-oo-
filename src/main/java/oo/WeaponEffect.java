@@ -21,9 +21,14 @@ public class WeaponEffect {
     public int getEffectRound() {
         return effectRound;
     }
+    public void setEffectRound(int round) {
+        this.effectRound=round;
+    }
 
     public void addEffectRound(int effectRound) {
-        this.effectRound+= effectRound;
+        int tempround=getEffectRound();
+        int round=getEffectRound()+effectRound;
+        setEffectRound(round>0?round:0);
     }
 
     public float getRandomActivation() {

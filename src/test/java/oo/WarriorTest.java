@@ -18,9 +18,9 @@ public class WarriorTest {
         Weapon weapon=new Weapon("木棒",2);
         Warrior warrior=new Warrior("张三",100,1,"战士",1,weapon);
 
-        Assert.assertEquals(warrior.profession, "战士");
-        Assert.assertEquals(warrior.weapon,weapon);
-        Assert.assertEquals(warrior.armorDefense, 1);
+        Assert.assertEquals(warrior.getProfession(), "战士");
+        Assert.assertEquals(warrior.getWeapon(),weapon);
+        Assert.assertEquals(warrior.getArmorDefense(), 1);
     }
 
 
@@ -136,7 +136,7 @@ public class WarriorTest {
         Warrior knight=new Warrior("王五",100,1,"骑士",0,weapon);
 
         String knightProfession=knight.getProfession();
-        String knightWeaponLength=knight.weapon.getWeaponLength();
+        String knightWeaponLength=knight.getWeapon().getWeaponLength();
         Assert.assertEquals(knightProfession,"骑士");
         Assert.assertEquals(knightWeaponLength,"长");
     }
@@ -160,7 +160,7 @@ public class WarriorTest {
 
     @Test
     public void should_return_attack_with_effect_when_warrior_has_match_weapon() throws Exception {
-        Weapon weapon=new Weapon("长矛",10,"长",new WeaponEffect("全力一击",1,10.0f));
+        Weapon weapon=new Weapon("长矛",10,"长",new WeaponEffect("全力一击",1,100.0f));
         Warrior knight=new Warrior("王五",100,2,"骑士",0,weapon);
         Player victim=new Player("张三",100,1);
 

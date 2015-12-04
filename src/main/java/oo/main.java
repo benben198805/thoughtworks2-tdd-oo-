@@ -9,8 +9,8 @@ public class main {
         Warrior xiaoXin;
         Warrior daXiong;
         try{
-            xiaoXin=new Warrior("小新",100,1,"骑士",1,new Weapon("动感光波",20,"长",new WeaponEffect("毒性伤害",3,100.0f)));
-            daXiong=new Warrior("大熊",100,1,"战士",1,new Weapon("拳头",10,"中",new WeaponEffect("击晕伤害",3,10.0f)));
+            xiaoXin=new Warrior("小新",100,2,"骑士",1,new Weapon("动感光波",20,"长",new WeaponEffect("毒性伤害",3,1.8f)));
+            daXiong=new Warrior("大熊",100,1,"战士",1,new Weapon("拳头",10,"中",new WeaponEffect("击晕伤害",3,1.3f)));
 
             game.fight(xiaoXin,daXiong);
         }
@@ -18,6 +18,5 @@ public class main {
         {
             System.out.println(e.toString());
         }
-
     }
 }

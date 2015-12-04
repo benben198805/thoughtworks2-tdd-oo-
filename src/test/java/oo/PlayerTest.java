@@ -79,8 +79,8 @@ public class PlayerTest {
         attacker.beEffected(new WeaponEffect("击晕伤害",2,0.0f));
         Player victim = new Player("李四", 80, 20);
 
-        assertThat(attacker.attack(victim), is("张三晕倒了，无法攻击, 眩晕还剩：1轮\n"));
-        assertThat(attacker.attack(victim), is("张三晕倒了，无法攻击, 眩晕还剩：0轮\n"));
+        assertThat(attacker.attack(victim), is("张三晕倒了，无法攻击, 眩晕还剩：1轮"));
+        assertThat(attacker.attack(victim), is("张三晕倒了，无法攻击, 眩晕还剩：0轮"));
         assertThat(attacker.attack(victim), is("普通人张三攻击了普通人李四，李四受到了10点伤害，李四剩余生命：70"));
     }
 
@@ -265,11 +265,11 @@ public class PlayerTest {
 
         String result=player.checkEffectState();
 
-        Assert.assertEquals("张三晕倒了，无法攻击, 眩晕还剩：2轮\n",result);
+        Assert.assertEquals("张三晕倒了，无法攻击, 眩晕还剩：2轮",result);
 
         result=player.checkEffectState();
 
-        Assert.assertEquals("张三晕倒了，无法攻击, 眩晕还剩：1轮\n",result);
+        Assert.assertEquals("张三晕倒了，无法攻击, 眩晕还剩：1轮",result);
     }
 
 }

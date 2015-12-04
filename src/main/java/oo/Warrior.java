@@ -6,9 +6,9 @@ import static java.lang.String.format;
  * Created by ben on 15-12-2.
  */
 public class Warrior extends Player{
-    public String profession;
-    public int armorDefense;
-    public Weapon weapon;
+    private String profession;
+    private int armorDefense;
+    private Weapon weapon;
 
 
     public Warrior(String name, int blood, int damage,String profession,int armorDefense,Weapon weapon) throws Exception {
@@ -36,6 +36,14 @@ public class Warrior extends Player{
 
     public String getProfession(){
         return profession;
+    }
+
+    public int getArmorDefense() {
+        return armorDefense;
+    }
+
+    public Weapon getWeapon() {
+        return weapon;
     }
 
     public void setProfession(String profession){
@@ -77,7 +85,7 @@ public class Warrior extends Player{
                     victim.getProfession(),
                     victim.getName(),
                     tripleDamageResult,
-                    victim.beAttacked(this.getDamage()));
+                    victim.beAttacked(getDamage()));
         }
 
         return result;
@@ -113,7 +121,7 @@ public class Warrior extends Player{
         this.setBlood(this.getBlood() - hurt);
 
         return format("%s受到了%d点伤害，%s%s剩余生命：%d",
-                this.getName(), damage,effectResult, this.getName(), this.getBlood());
+                this.getName(), hurt,effectResult, this.getName(), this.getBlood());
     }
 
 

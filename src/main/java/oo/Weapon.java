@@ -4,10 +4,10 @@ package oo;
  * Created by ben on 15-12-2.
  */
 public class Weapon {
-    public String weaponName;
-    public int weaponDamage;
-    public String weaponLength;
-    public WeaponEffect weaponEffect;
+    private String weaponName;
+    private int weaponDamage;
+    private String weaponLength;
+    private WeaponEffect weaponEffect;
 
     public Weapon(String weaponName, int weaponDamage) {
         this.weaponName = weaponName;

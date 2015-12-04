@@ -6,13 +6,13 @@ public class Player {
     private String name;
     private int blood;
     private int damage;
-    private WeaponEffect weaponEffect;
+    private WeaponEffect effect;
 
     public Player(String name, int blood, int damage) {
         this.name = name;
         this.blood = blood;
         this.damage = damage;
-        this.weaponEffect=new WeaponEffect("",0,0);
+        this.effect=new WeaponEffect("",0,0);
     }
 
     public String getName() {
@@ -38,8 +38,8 @@ public class Player {
     public String attack(Player victim) {
         String result="";
 
-        boolean isStun=weaponEffect.getEffectName()=="击晕伤害";
-        boolean isFreeze=weaponEffect.getEffectName()=="冰冻伤害"&&weaponEffect.getEffectRound()==3;
+        boolean isStun=effect.getEffectName()=="击晕伤害";
+        boolean isFreeze=effect.getEffectName()=="冰冻伤害"&&effect.getEffectRound()==3;
 
         result=checkEffectState();
 
@@ -53,7 +53,7 @@ public class Player {
     public String beAttacked(int damage) {
         String effectResult="";
 
-        switch (weaponEffect.getEffectName()){
+        switch (effect.getEffectName()){
             case "毒性伤害":
                 effectResult=format("%s中毒了,", name);
                 break;
@@ -84,52 +84,52 @@ public class Player {
     }
 
     public WeaponEffect getWeaponEffect(){
-        return weaponEffect;
+        return effect;
     }
 
     public void beEffected(WeaponEffect weaponEffect)
     {
-        if(this.weaponEffect.getEffectName().length()==0)
+        if(this.effect.getEffectName()=="")
         {
-            this.weaponEffect=weaponEffect;
+            this.effect=new WeaponEffect(weaponEffect.getEffectName(),weaponEffect.getEffectRound(),0.0f);
         }
-        else if(this.weaponEffect.getEffectName()==weaponEffect.getEffectName())
+        else if(this.effect.getEffectName()==weaponEffect.getEffectName())
         {
-            this.weaponEffect.addEffectRound(weaponEffect.getEffectRound());
+            this.effect.addEffectRound(weaponEffect.getEffectRound());
         }
     }
 
 
     public String checkEffectState(){
         String effectResult="";
-        switch (weaponEffect.getEffectName()){
+        switch (effect.getEffectName()){
             case "毒性伤害":
                 blood-=2;
                 effectResult=format("%s受到%d点毒性伤害, %s剩余生命：%d\n",name,2,name,blood);
-                weaponEffect.addEffectRound(-1);
+                effect.addEffectRound(-1);
                 break;
             case "火焰伤害":
                 blood-=2;
                 effectResult=format("%s受到%d点火焰伤害, %s剩余生命：%d\n",name,2,name,blood);
-                weaponEffect.addEffectRound(-1);
+                effect.addEffectRound(-1);
                 break;
             case "冰冻伤害":
-                if(weaponEffect.getEffectRound()==3)
+                if(effect.getEffectRound()==3)
                 {
                     effectResult=format("%s被冰冻了, 无法攻击\n",name);
                 }
-                weaponEffect.addEffectRound(-1);
+                effect.addEffectRound(-1);
                 break;
             case "击晕伤害":
-                weaponEffect.addEffectRound(-1);
-                effectResult=format("%s晕倒了，无法攻击, 眩晕还剩：%d轮\n", name,weaponEffect.getEffectRound());
+                effect.addEffectRound(-1);
+                effectResult=format("%s晕倒了，无法攻击, 眩晕还剩：%d轮", name,effect.getEffectRound());
                 break;
             default:
                 break;
         }
 
-        if(weaponEffect.getEffectRound()<=0){
-            weaponEffect=new WeaponEffect("",0,0.0f);
+        if(effect.getEffectRound()==0){
+            effect=new WeaponEffect("",0,0.0f);
         }
         return effectResult;
     }
